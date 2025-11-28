@@ -1,11 +1,60 @@
-.one {
-  height: 80px;
+// css練習四
+
+.div-black {
+  background-color: #474a4d;
+  width: 300px;
+  height: 300px;
 }
 
-.two {
-  margin: 0px 10px;
+.div-orange {
+  background-color: #f7b977;
+  width: 200px;
+  height: 200px;
+  bottom: 50%;
+  left: 50%;
+  // transform: translate(-50%, 50%);
+  // transform: translate(0%, 0%);
+  animation: orangeMove 3s infinite alternate;
 }
 
-.row1 {
-  margin-bottom: 10px;
+@keyframes orangeMove {
+  0% {
+    transform: translate(0%, 0%);
+  }
+
+  100% {
+    transform: translate(0%, -50%);
+  }
 }
+
+.div-green {
+  background-color: #028760;
+  width: 100px;
+  height: 100px;
+  bottom: 0;
+  left: 0;
+}
+
+
+// < !-- 完全置中的寫法 -->
+// html,
+// body {
+//   height: 100%;
+//   margin: 0;
+// }
+
+// .container {
+//   display: flex;
+//   justify-content: center;
+//   /* 水平置中 */
+//   align-items: center;
+//   /* 垂直置中 */
+//   height: 100vh;
+//   /* 讓容器占滿整個畫面高度 */
+// }
+
+// .box {
+//   width: 100px;
+//   height: 100px;
+//   background-color: orange;
+// }
