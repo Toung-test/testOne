@@ -1,12 +1,54 @@
 <div class="conatainer">
   <ol>
-    <li>試著將1~50打印出來。(for迴圈)</li>
-    <li>承接第一題將偶數去除並且打應出來。</li>
-    <li>將1~50除以3餘數為2的值打印出來。(for迴圈)</li>
-    <li>建立右圖的資料並且使用forEach修改小王的age為18。(forEach)</li>
-    <li>找出陣列裡的最小值([4, 6, 1, 2, 7, 9, 12, 15, 13])</li>
-    <li>倒著印出字串(你好我是Allen)</li>
-    <li>將這段文字中的名稱打印出來(我是Allen，你好)</li>
+    <li>Allen錢包裡有 200 元，買了一個漢堡(50)，三個薯條(40)，他還剩下多少錢？</li>
+    <li>Allen身上有 5000 元，想要買 10 份漢堡、10 份薯條，因為他有會員卡，所以可以打九折優惠，請問他還剩下多少錢？</li>
+    <li>建立右圖的資料並且用程式判斷誰有達成VIP資格(累積花費200以上)</li>
+    <li>寫一個可以帶入體重的方法來計算BMI在哪個區間</li>
   </ol>
+
+  <form action="" class="mx-5">
+    <label for="height">身高：</label>
+    <input type="number" id="height" placeholder="請輸入您的身高(公尺)" [(ngModel)]="hei" name="hei">
+    <br>
+    <label for="weight">體重：</label>
+    <input type="number" id="weight" placeholder="請輸入您的體重(公斤)" [(ngModel)]="wei" name="wei">
+    <br>
+    <input type="submit" value="計算 BMI" (click)="getBMI(hei,wei)">
+    <p>您的 BMI 是 {{BMI}} 代表{{BMIResult}}</p>
+  </form>
+  <h1 class="text-danger">Angular 引用元件</h1>
+  <app-about></app-about>
+  <app-new></app-new>
+  <hr>
+  <input type="text" name="te" id="te">
+  <hr>
+
+  <div class="m-5 border border-5 border-dark p-3">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-danger" (click)="resetLevel()">重置</button>
+    </div>
+    <h1 class="text-danger fw-bold text-center">角色等級計算機</h1>
+    <p class="fs-5">
+      您目前的等級是：<span class="fw-bold">{{nowLevel}}</span>
+      <span class="text-danger mb-3">{{alertContent}}</span>
+    </p>
+    <div class="d-flex justify-content-around mb-3">
+      <button (click)="upLevelOne()" class="btn btn-success ">升一級</button>
+      <button (click)="downLevelOne()" class="btn btn-warning ">降一級</button>
+    </div>
+    <div>
+      <p class="fs-5">攻擊力：<span class="fw-bold">{{attack}}</span></p>
+      <p class="fs-5">防禦力：<span class="fw-bold">{{defense}}</span></p>
+      <span class="text-danger">
+        註解：角色初始等級為 1 ，初始攻擊/防禦為 10 ，
+        每提升一級攻擊 * 3 防禦 * 2 ，降級則除 3 跟 2 。
+      </span>
+    </div>
+    <div class="mt-3">
+      <label for="inputLevel">自行輸入等級：</label>
+      <input type="number" min="1" [(ngModel)]="inputLevel" name="inputLevel" id="inputLevel">
+    </div>
+    <button class="btn btn-primary w-100 mt-3" (click)="updateLevel(inputLevel)">修改等級</button>
+  </div>
 </div>
 <router-outlet />
