@@ -1,27 +1,9 @@
-<!-- track $index 代表，這筆資料在陣列中的哪個位置，且可以用來減輕系統負擔(因為可用唯一值去修改資料) -->
-<!-- @for(data of newArray; track $index){
-<p>{{data}}</p>
+<button (click)="changeDisplayH1()" class="btn btn-primary">切換是否顯示 H1</button>
+@if(this.displayH1){
+<h1>有 H1 我顯示出來了</h1>
+}
+@else{
+<p>沒有 H1 </p>
 }
 
-
-@for(data of arrayDataTwo; track $index){
-@for(ID of data.userData ; track $index){
-<p>{{ID.userID}}</p>
-}
-} -->
-
-<div class="container p-3">
-  @for(user of userArray ;track $index){
-  <div class="border border-primary border-3 mb-3">
-    <h3>{{user.userName}}</h3>
-    <p>擁有道具:</p>
-    <ul>
-      @for(prop of user.props ; track $index){
-      <li>{{prop.propsName}} 數量：{{prop.amount}}</li>
-      }
-    </ul>
-  </div>
-
-  }
-</div>
 <router-outlet />
