@@ -1,9 +1,4 @@
-<button (click)="changeDisplayH1()" class="btn btn-primary">切換是否顯示 H1</button>
-@if(this.displayH1){
-<h1>有 H1 我顯示出來了</h1>
+@for(item of this.area ; track $index){
+<p>{{item}}</p>
 }
-@else{
-<p>沒有 H1 </p>
-}
-
 <router-outlet />

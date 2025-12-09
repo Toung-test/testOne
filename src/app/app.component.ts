@@ -1,3 +1,4 @@
+import { HttpService } from './@http-service/http.service';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
@@ -8,35 +9,25 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
 export class AppComponent {
 
-  displayH1: boolean = false;
+  constructor(private httpService: HttpService) { }
 
-  changeDisplayH1() {
-    if (this.displayH1) {
-      this.displayH1 = false;
-    } else {
-      this.displayH1 = true;
-    }
+  url: string = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-065?Authorization=CWA-586EED3D-A84F-437E-9109-E4D418BC7A2D";
 
-  }
-  // ngOnInit 是網頁的生命週期，在網頁一開始的時候就會被觸發
+  area: Array<any> = [];
+
   ngOnInit(): void {
-    let num = 5;
-    switch (num) {
-      case 1:
-        console.log(1);
-        break;
-      case 2:
-        console.log(2);
-        break;
-      case 5:
-        console.log(5);
-        break;
-      default:
-        console.log('default');
-        break;
-    }
-
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.httpService.getApi(this.url).subscribe((res: any) => {
+      console.log(res.records.Locations[0].Location);
+      let allData = res.records.Locations[0].Location;
+      for (let data of allData) {
+        console.log(data.LocationName);
+        this.area.push(data.LocationName);
+      }
+    });
   }
 }
