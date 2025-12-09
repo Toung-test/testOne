@@ -1,54 +1,27 @@
-<div class="conatainer">
-  <ol>
-    <li>Allen錢包裡有 200 元，買了一個漢堡(50)，三個薯條(40)，他還剩下多少錢？</li>
-    <li>Allen身上有 5000 元，想要買 10 份漢堡、10 份薯條，因為他有會員卡，所以可以打九折優惠，請問他還剩下多少錢？</li>
-    <li>建立右圖的資料並且用程式判斷誰有達成VIP資格(累積花費200以上)</li>
-    <li>寫一個可以帶入體重的方法來計算BMI在哪個區間</li>
-  </ol>
+<!-- track $index 代表，這筆資料在陣列中的哪個位置，且可以用來減輕系統負擔(因為可用唯一值去修改資料) -->
+<!-- @for(data of newArray; track $index){
+<p>{{data}}</p>
+}
 
-  <form action="" class="mx-5">
-    <label for="height">身高：</label>
-    <input type="number" id="height" placeholder="請輸入您的身高(公尺)" [(ngModel)]="hei" name="hei">
-    <br>
-    <label for="weight">體重：</label>
-    <input type="number" id="weight" placeholder="請輸入您的體重(公斤)" [(ngModel)]="wei" name="wei">
-    <br>
-    <input type="submit" value="計算 BMI" (click)="getBMI(hei,wei)">
-    <p>您的 BMI 是 {{BMI}} 代表{{BMIResult}}</p>
-  </form>
-  <h1 class="text-danger">Angular 引用元件</h1>
-  <app-about></app-about>
-  <app-new></app-new>
-  <hr>
-  <input type="text" name="te" id="te">
-  <hr>
 
-  <div class="m-5 border border-5 border-dark p-3">
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-danger" (click)="resetLevel()">重置</button>
-    </div>
-    <h1 class="text-danger fw-bold text-center">角色等級計算機</h1>
-    <p class="fs-5">
-      您目前的等級是：<span class="fw-bold">{{nowLevel}}</span>
-      <span class="text-danger mb-3">{{alertContent}}</span>
-    </p>
-    <div class="d-flex justify-content-around mb-3">
-      <button (click)="upLevelOne()" class="btn btn-success ">升一級</button>
-      <button (click)="downLevelOne()" class="btn btn-warning ">降一級</button>
-    </div>
-    <div>
-      <p class="fs-5">攻擊力：<span class="fw-bold">{{attack}}</span></p>
-      <p class="fs-5">防禦力：<span class="fw-bold">{{defense}}</span></p>
-      <span class="text-danger">
-        註解：角色初始等級為 1 ，初始攻擊/防禦為 10 ，
-        每提升一級攻擊 * 3 防禦 * 2 ，降級則除 3 跟 2 。
-      </span>
-    </div>
-    <div class="mt-3">
-      <label for="inputLevel">自行輸入等級：</label>
-      <input type="number" min="1" [(ngModel)]="inputLevel" name="inputLevel" id="inputLevel">
-    </div>
-    <button class="btn btn-primary w-100 mt-3" (click)="updateLevel(inputLevel)">修改等級</button>
+@for(data of arrayDataTwo; track $index){
+@for(ID of data.userData ; track $index){
+<p>{{ID.userID}}</p>
+}
+} -->
+
+<div class="container p-3">
+  @for(user of userArray ;track $index){
+  <div class="border border-primary border-3 mb-3">
+    <h3>{{user.userName}}</h3>
+    <p>擁有道具:</p>
+    <ul>
+      @for(prop of user.props ; track $index){
+      <li>{{prop.propsName}} 數量：{{prop.amount}}</li>
+      }
+    </ul>
   </div>
+
+  }
 </div>
 <router-outlet />
