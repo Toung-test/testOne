@@ -3,12 +3,14 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
   // 將路由功能注入
   provideRouter(routes),
   // 將 HttpClinet 功能注入
-  provideHttpClient()
+  provideHttpClient(),
+  provideNativeDateAdapter()
   ]
 };
