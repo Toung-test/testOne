@@ -1,31 +1,21 @@
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { Component } from '@angular/core';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatButtonModule } from '@angular/material/button';
-
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatTabsModule, MatButtonModule, RouterLink],
+  imports: [RouterOutlet, FormsModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent {
-  links = [
-    { name: 'First', path: '/first' },
-    { name: 'Second', path: '/second' },
-    { name: 'Third', path: '/third' }
-  ];
-  activeLink = this.links[0].path;
+  // 傳統寫法
+  selectData!: string;
 
+  // Angular Material
+  selected = 'option2';
 
-  // 原先的呈現純切換標籤
-  // links = ['First', 'Second', 'Third'];
-  // activeLink = this.links[0];
-
-  // 新增頁面的，這次不會用到
-  // addLink() {
-  //   this.links.push(`Link ${this.links.length + 1}`);
-  // }
 }

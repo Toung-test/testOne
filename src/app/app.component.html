@@ -1,45 +1,22 @@
-<!-- <mat-tab-group>
-  <mat-tab label="First"> Content 1 </mat-tab>
-  <mat-tab label="Second"> Content 2 </mat-tab>
-  <mat-tab label="Third"> Content 3 </mat-tab>
-</mat-tab-group>
-<br />
-<hr> -->
+<!-- 傳統寫法 -->
+<h3>選擇到{{selectData}}</h3>
+<select [(ngModel)]="selectData">
+  <option value="一">One</option>
+  <option value="二">Two</option>
+  <option value="三">Three</option>
+</select>
+<hr>
+<!-- Angular Material -->
+<mat-form-field>
+  <mat-label>Select an option</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option>None</mat-option>
+    <mat-option value="option1">Option 1</mat-option>
+    <mat-option value="option2">Option 2</mat-option>
+    <mat-option value="option3">Option 3</mat-option>
+  </mat-select>
+</mat-form-field>
 
-<!-- 切換路由，並呈現不同畫面 -->
-<nav mat-tab-nav-bar [tabPanel]="tabPanel">
-  @for (link of links; track link) {
-  <a mat-tab-link (click)="activeLink = link.name" [active]="activeLink == link.name" [routerLink]="link.path">
-    {{link.name}}
-  </a>
-  }
-  <a mat-tab-link disabled>Disabled Link</a>
-</nav>
-<mat-tab-nav-panel #tabPanel>
-  <br>
-  <router-outlet />
-</mat-tab-nav-panel>
+<p>You selected: {{selected}}</p>
 
-
-
-
-
-
-<!-- [tabPanel] 屬性放的是 ID(可自由更改，但要對應正確) ，對應下方的 <mat-tab-nav-panel #tabPanel> -->
-<!-- 原先的呈現純切換標籤 -->
-<!-- <nav mat-tab-nav-bar [tabPanel]="tabPanel">
-  @for (link of links; track link) {
-  <a mat-tab-link (click)="activeLink = link" [active]="activeLink == link">
-    {{link}}
-  </a>
-  }
-  <a mat-tab-link disabled>Disabled Link</a>
-</nav>
-<mat-tab-nav-panel #tabPanel>
-</mat-tab-nav-panel> -->
-
-
-<!-- 新增頁面的，這次不會用到，但我的 css 不會呈現，再想想為甚麼 -->
-<!-- <button matButton="elevated" class="example-action-button" (click)="addLink()">
-  Add link
-</button> -->
+<router-outlet />
