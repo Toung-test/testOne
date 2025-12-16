@@ -1,7 +1,45 @@
-<!-- 如果是 true 才會顯示 -->
-<h3 [ngClass]="{'h3Css':showClass==true}">Hello</h3>
-<button (click)="showClass=!showClass">點我顯示/取消紅色的 h3 </button>
+<!-- <mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
+<br />
+<hr> -->
 
-<!-- 透過函式方法呈現 -->
-<h4 [ngClass]="showH4Css()">Hello Four</h4>
-<router-outlet />
+<!-- 切換路由，並呈現不同畫面 -->
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  @for (link of links; track link) {
+  <a mat-tab-link (click)="activeLink = link.name" [active]="activeLink == link.name" [routerLink]="link.path">
+    {{link.name}}
+  </a>
+  }
+  <a mat-tab-link disabled>Disabled Link</a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <br>
+  <router-outlet />
+</mat-tab-nav-panel>
+
+
+
+
+
+
+<!-- [tabPanel] 屬性放的是 ID(可自由更改，但要對應正確) ，對應下方的 <mat-tab-nav-panel #tabPanel> -->
+<!-- 原先的呈現純切換標籤 -->
+<!-- <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  @for (link of links; track link) {
+  <a mat-tab-link (click)="activeLink = link" [active]="activeLink == link">
+    {{link}}
+  </a>
+  }
+  <a mat-tab-link disabled>Disabled Link</a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+</mat-tab-nav-panel> -->
+
+
+<!-- 新增頁面的，這次不會用到，但我的 css 不會呈現，再想想為甚麼 -->
+<!-- <button matButton="elevated" class="example-action-button" (click)="addLink()">
+  Add link
+</button> -->
