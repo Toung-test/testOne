@@ -1,17 +1,2 @@
-<!-- 網頁的教學 -->
-<!-- <canvas id="chart"></canvas>
-<hr />
-<canvas id="chart2"></canvas>
-<hr />
-<canvas id="chart3"></canvas>
-<hr />
-<canvas id="chart4"></canvas>
-<hr />
-<canvas id="chart5"></canvas>
-<hr /> -->
-@for (item of chartArray; track $index) {
-<canvas id={{item.id}}></canvas>
-<hr />
-}
-
+<button (click)="openDialog()">Open Dialog</button>
 <router-outlet />
