@@ -1,54 +1,29 @@
+import { LoadingService } from './@http-service/loading.service';
 import { RouterOutlet } from '@angular/router';
-import { Component, inject, numberAttribute } from '@angular/core';
-import Chart from 'chart.js/auto';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+import { Component } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MatProgressSpinnerModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent {
-  // readonly 跟 constructor 是一樣的效果，但官方建議 readonly
-  readonly dialog = inject(MatDialog);
-  // constructor(private dialog: MatDialog) { };
+  constructor(private loadingService: LoadingService) { }
 
-  openDialog() {
-    // 最基礎的開啟，不調整css或內容
-    // this.dialog.open(DialogComponent);
+  isLoading: boolean = false;
 
-    // 修正內容 & css
-    let dialogRef = this.dialog.open(DialogComponent, {
-      width: '300px',
-      height: '300px',
-      data: "Hello"
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log(result);
-      }
-    })
-  }
-
-
-  // 介紹同步 & 非同步
-  num: number = 0;
 
   ngOnInit(): void {
-    this.addNum();
+    this.loadingService._loading$.subscribe((res: boolean) => {
+      this.isLoading = res;
+    });
   }
 
-  // 因為有一直無限呼叫，所以會一直下去
-  addNum() {
-    setTimeout(() => {
-      console.log('上一個值', this.num);
-      this.num += 1;
-      console.log('下一個值', this.num);
-      this.addNum();
-    }, 1000);
+  openLoading() {
+    this.loadingService.show();
   }
 }
