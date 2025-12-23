@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -30,4 +30,30 @@ export class HttpService {
   delApi(url: string) {
     return this.httpClient.delete(url);
   }
+
+
+  // 呼叫 AI 的 url
+  apiAIurl = 'https://api.openai.com/v1/chat/completions';
+
+  // 呼叫 AI 的 key - crecar.0218@gmail.com
+  // 放在 gitnore
+  aiKey = '';
+
+  // 專屬於呼叫 AI 的
+  postAI(msg: string) {
+    // 呼叫 api 傳遞過去的抬頭 header
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.aiKey}`
+    });
+
+    // 呼叫 api 傳遞過去的資料
+    const body = {
+      model: 'gpt-4o-mini', // model 可以選擇 gpt-4o 或 gpt-3.5-turbo
+      messages: [{ role: 'user', content: msg }]
+    };
+
+    return this.httpClient.post(this.apiAIurl, body, { headers });
+  }
+
 }

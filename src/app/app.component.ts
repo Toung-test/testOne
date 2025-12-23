@@ -2,6 +2,7 @@ import { LoadingService } from './@http-service/loading.service';
 import { RouterOutlet } from '@angular/router';
 import { Component } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HttpService } from './@http-service/http.service';
 
 
 @Component({
@@ -12,18 +13,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 
 export class AppComponent {
-  constructor(private loadingService: LoadingService) { }
-
-  isLoading: boolean = false;
-
-
+  constructor(private httpService: HttpService) { };
   ngOnInit(): void {
-    this.loadingService._loading$.subscribe((res: boolean) => {
-      this.isLoading = res;
-    });
-  }
+    this.httpService.postAI('HI').subscribe((res) => {
+      console.log(res);
 
-  openLoading() {
-    this.loadingService.show();
+    })
   }
 }
